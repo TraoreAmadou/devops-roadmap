@@ -1,0 +1,4 @@
+2026-02-06 12:33:22 | [0;32mSucces archived[0m: /var/log -> ./log_archives/logs_archive_20260206_123320.tar.gz [0;31m(Size: 5.8M)[0m
+2026-02-06 13:37:43 | [0;32mSucces archived[0m: /var/log -> ./log_archives/logs_archive_20260206_133736.tar.gz [0;31m(Size: 5.8M)[0m
+2026-02-06 13:41:59 | [0;32mSucces archived[0m: /var/log -> ./log_archives/logs_archive_20260206_134157.tar.gz [0;31m(Size: 5.8M)[0m
+2026-02-06 13:42:41 | [0;32mSucces archived[0m: /var/log -> ./log_archives/logs_archive_20260206_134239.tar.gz [0;31m(Size: 5.8M)[0m
