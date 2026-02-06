@@ -1,6 +1,8 @@
 
 # Server Performance Stats
 
+https://roadmap.sh/projects/server-stats
+
 This project provides a simple **Bash script** that prints basic server performance statistics. It helps you quickly understand the health and resource usage of a Linux system.
 
 The script reports:
