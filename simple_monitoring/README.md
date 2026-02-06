@@ -1,5 +1,7 @@
 # Simple Monitoring Dashboard (Netdata)
 
+https://roadmap.sh/projects/simple-monitoring-dashboard
+
 This project sets up a **basic monitoring dashboard** using **Netdata** to visualize real-time system metrics (CPU, memory, disk I/O) and includes simple automation scripts to install Netdata, generate load for testing, and cleanly remove it.
 
 ## What you will learn
