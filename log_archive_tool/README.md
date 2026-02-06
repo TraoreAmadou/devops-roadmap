@@ -2,6 +2,8 @@
 
 # Log Archive Tool (CLI)
 
+https://roadmap.sh/projects/log-archive-tool
+
 This project provides a simple **command-line tool** to archive system logs by compressing them into a timestamped `tar.gz` file and storing them in a dedicated archive directory. It also writes a log entry with the **date/time** and archive details.
 
 The most common location for logs on Unix-based systems is **`/var/log`**, which is also the default used by this tool.
