@@ -2,6 +2,7 @@
 
 
 https://roadmap.sh/projects/server-stats
+https://roadmap.sh/projects/log-archive-tool
 
 
 This repository contains my hands-on DevOps projects based on the **roadmap.sh DevOps projects** track. Each project is stored in its own folder with scripts and a dedicated README.
