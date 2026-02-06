@@ -1,0 +1,193 @@
+
+
+# Log Archive Tool (CLI)
+
+This project provides a simple **command-line tool** to archive system logs by compressing them into a timestamped `tar.gz` file and storing them in a dedicated archive directory. It also writes a log entry with the **date/time** and archive details.
+
+The most common location for logs on Unix-based systems is **`/var/log`**, which is also the default used by this tool.
+
+---
+
+## Features
+
+* Accepts a log directory as an argument:
+
+  ```bash
+  ./log-archive.sh <log-directory>
+  ```
+* If no argument is provided, prompts the user and falls back to **`/var/log`**.
+* Creates a compressed archive in the format:
+
+  ```
+  logs_archive_YYYYMMDD_HHMMSS.tar.gz
+  ```
+* Stores archives in a local folder:
+
+  ```
+  ./log_archives
+  ```
+* Appends an entry to `./log_archives/archive.log` with:
+
+  * timestamp
+  * source directory
+  * archive path
+  * archive size
+  * success/failure status (colorized in terminal output)
+
+---
+
+## Requirements
+
+* Linux / Unix-based environment
+* `bash`
+* `tar`
+* `du`
+* `sudo` access (the script uses `sudo tar` to read protected logs)
+
+---
+
+## Files
+
+* **`log-archive.sh`** (your script): the CLI tool that creates archives and logs the operation.
+* **`./log_archives/`**: output folder created automatically.
+* **`./log_archives/archive.log`**: log file created/updated automatically.
+
+---
+
+## Usage
+
+### 1) Make the script executable
+
+```bash
+chmod +x log-archive.sh
+```
+
+### 2) Run with a directory argument
+
+```bash
+./log-archive.sh /var/log
+```
+
+### 3) Run without an argument
+
+```bash
+./log-archive.sh
+```
+
+The script will prompt:
+
+* press **Enter** to use default `/var/log`
+* or type another directory path
+
+---
+
+## Output
+
+### Archive location
+
+Archives are stored in:
+
+```
+./log_archives/
+```
+
+Example archive filename:
+
+```
+./log_archives/logs_archive_20240816_100648.tar.gz
+```
+
+### Log file
+
+A log entry is appended to:
+
+```
+./log_archives/archive.log
+```
+
+Each entry includes:
+
+* date/time
+* whether archiving succeeded or failed
+* source directory
+* archive path
+* archive size
+
+---
+
+## How it works (high-level)
+
+1. Detects the log directory:
+
+   * uses argument if provided
+   * otherwise prompts user and defaults to `/var/log`
+2. Validates directory exists.
+3. Creates `./log_archives` if missing.
+4. Generates a timestamp with `date`.
+5. Archives directory contents with:
+
+   ```bash
+   sudo tar -czf <archive> -C <log_dir> .
+   ```
+6. Measures archive size using `du -sh`.
+7. Writes success/failure entry to `archive.log`.
+
+---
+
+## Notes
+
+* Using `sudo tar` is important when archiving system logs (some files require root permissions).
+* The archive directory is created in the **current working directory** where you run the script.
+
+---
+
+## Example
+
+```bash
+./log-archive.sh /var/log
+ls -lh ./log_archives
+cat ./log_archives/archive.log
+```
+
+---
+
+## Scheduling with cron (optional)
+
+You can automate the log archiving by running the script on a schedule with **cron**.
+
+### Example: run every 15 minutes on Fridays
+
+Edit your crontab:
+
+```bash
+crontab -e
+```
+
+Add this line (make sure to replace the script path):
+
+```cron
+*/15 * * * 5 /path/to/log-archive.sh /var/log
+```
+
+**Meaning of the schedule:**
+
+* `*/15` → every 15 minutes
+* `*` → every hour
+* `*` → every day of the month
+* `*` → every month
+* `5` → Friday
+
+### Recommended: log cron output
+
+To keep a record of cron executions, redirect stdout/stderr:
+
+```cron
+*/15 * * * 5 /path/to/log-archive.sh /var/log >> /path/to/log_archives/cron.log 2>&1
+```
+
+---
+
+## License
+
+This project is provided for learning purposes.
+
