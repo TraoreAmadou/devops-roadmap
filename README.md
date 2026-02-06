@@ -1,5 +1,9 @@
 # DevOps Projects (roadmap.sh)
 
+
+https://roadmap.sh/projects/server-stats
+
+
 This repository contains my hands-on DevOps projects based on the **roadmap.sh DevOps projects** track. Each project is stored in its own folder with scripts and a dedicated README.
 
 > Goal: practice real DevOps fundamentals (Linux, scripting, automation, monitoring) by building small, usable tools.
